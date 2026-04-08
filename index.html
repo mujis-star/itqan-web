@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITQAN Union - Intelligent Trainees for Qualified and Networked Professionals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a3a5f;
+            --primary-dark: #0d2842;
+            --secondary: #d62828;
+            --secondary-dark: #a51c1c;
+            --accent: #f77f00;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(214, 40, 40, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(214, 40, 40, 0.3);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(26, 58, 95, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(26, 58, 95, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            padding: 1.2rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+        height: 70px;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-tagline {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 500;
+            max-width: 300px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 58, 95, 0.9) 0%, rgba(13, 40, 66, 0.95) 100%), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 8rem 1rem;
+            margin-bottom: 4rem;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.8rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-btns {
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-title span {
+            color: var(--secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: 2;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Core Committee Section */
+        .committee-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .committee-header, .subwings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .committee-header:hover, .subwings-header:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        .committee-header h2, .subwings-header h2 {
+            margin-bottom: 0;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-icon {
+            font-size: 1.8rem;
+            transition: transform 0.4s ease;
+        }
+
+        .committee-header.active .toggle-icon,
+        .subwings-header.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .committee-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 0.8s ease;
+            margin-top: 2rem;
+        }
+
+        .committee-grid.active {
+            display: grid;
+        }
+
+        .committee-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .committee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-top {
+            padding: 2rem 1.5rem 1.5rem;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .position {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .name {
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-bottom {
+            padding: 1.5rem;
+            background-color: rgba(26, 58, 95, 0.05);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .committee-card:hover .card-bottom {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card-buttons .btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* About Cards Section */
+        .about-cards {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .about-cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--secondary);
+        }
+
+        .about-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-card h3::after {
+            content: '→';
+            color: var(--secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover h3::after {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 4rem 0 1.5rem;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+            opacity: 0.9;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Enhanced Profile Modal with Photos */
+        .profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .profile-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        /* Profile Modal Header with Photo */
+        .modal-header-with-photo {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .profile-photo-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--secondary);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-photo-container:hover .profile-photo {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .photo-placeholder i {
+            font-size: 3rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .profile-header-info {
+            flex-grow: 1;
+        }
+
+        .profile-header-info h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .profile-header-info p {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .wing-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .wing-badge {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .details-section {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(26, 58, 95, 0.05);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .details-section h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .details-section h4 i {
+            color: var(--secondary);
+        }
+
+        .details-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .details-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .details-section li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(247, 127, 0, 0.05);
+            border-radius: var(--border-radius);
+            border: 1px dashed var(--accent);
+        }
+
+        .contact-info h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .contact-item i {
+            color: var(--primary);
+            width: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        /* Fix for sub-wing cards with multiple names */
+        #subwingsGrid .committee-card .card-top {
+            padding: 1.5rem 1.5rem 1rem;
+        }
+
+        #subwingsGrid .committee-card .name {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        #subwingsGrid .committee-card p {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Ensure buttons are visible on hover */
+        #subwingsGrid .committee-card .card-bottom {
+            padding: 1rem 1.5rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Foreign Language Wing Special Styling */
+        .foreign-language {
+            border: 2px solid var(--accent);
+            background: linear-gradient(to right, rgba(247, 127, 0, 0.05), white);
+        }
+
+        .foreign-language .position {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Leadership grid layout */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.8rem;
+            margin: 1.2rem 0;
+        }
+
+        .leader-item {
+            background: rgba(26, 58, 95, 0.05);
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .leader-item:hover {
+            background: rgba(26, 58, 95, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .leader-role {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .leader-name {
+            display: block;
+            font-size: 1rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Multi-buttons layout */
+        .multi-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            width: 100%;
+        }
+
+        .btn-compact {
+            padding: 8px 10px !important;
+            font-size: 0.75rem !important;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            min-height: 40px;
+        }
+
+        .btn-compact i {
+            font-size: 0.8rem;
+        }
+
+        /* Make sure card has enough height */
+        .foreign-language {
+            min-height: 380px;
+            height: auto;
+        }
+
+        .foreign-language .card-top {
+            flex-grow: 1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.3rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 6rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .committee-header, .subwings-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .committee-header h2, .subwings-header h2 {
+                font-size: 1.8rem;
+            }
+
+            /* Responsive profile modal */
+            .modal-header-with-photo {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.2rem;
+            }
+            
+            .profile-photo-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-header-info h3 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .committee-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card-buttons .btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+
+            .multi-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+/* Auditing Board Special Styling */
+.auditing-board-card {
+    border: 2px solid var(--secondary);
+    background: linear-gradient(to right, rgba(214, 40, 40, 0.05), white);
+}
+
+.auditing-board-card .position {
+    color: var(--secondary);
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+}
+
+.auditing-board-card .leader-item {
+    background: rgba(214, 40, 40, 0.1);
+}
+
+.auditing-board-card .leader-item:hover {
+    background: rgba(214, 40, 40, 0.2);
+}
+
+.auditing-board-card .leader-role {
+    color: var(--secondary);
+}
+
+/* Make sure card has enough height */
+.auditing-board-card {
+    min-height: 380px;
+    height: auto;
+}
+
+.auditing-board-card .card-top {
+    flex-grow: 1;
+}
+
+/* === Premium Auditing Board Card === */
+.auditing-board-pro {
+    border: none;
+    background: linear-gradient(135deg, #fff 60%, rgba(214,40,40,0.08));
+    box-shadow: 0 15px 40px rgba(214,40,40,0.15);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.audit-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--secondary);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+}
+
+.audit-header i {
+    font-size: 1.1rem;
+}
+
+.audit-members {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.audit-person {
+    text-align: center;
+}
+
+.audit-person .role {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 4px;
+}
+
+.audit-person .name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.audit-divider {
+    width: 1px;
+    height: 45px;
+    background: rgba(0,0,0,0.1);
+}
+
+.audit-desc {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    margin: 1.2rem 0 1.8rem;
+}
+
+.audit-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* === Auditing Board Hover Buttons === */
+.auditing-board-pro {
+    position: relative;
+    overflow: hidden;
+}
+
+.audit-hover-actions {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    display: flex;
+    gap: 0.6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s ease;
+}
+
+.auditing-board-pro:hover .audit-hover-actions {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+
+/* ===== Convener Hover Color Logic ===== */
+
+/* Default color */
+.audit-person.convener .name {
+    color: var(--primary);
+    transition: color 0.3s ease;
+}
+
+/* When hovering the whole card → BLUE */
+.auditing-board-pro:hover .audit-person.convener .name {
+    color: #1e88e5; /* Blue */
+}
+
+/* When hovering ONLY the convener button → DARK BLUE */
+.auditing-board-pro .audit-hover-actions button:last-child:hover
+~ .audit-person.convener .name {
+    color: #0d47a1; /* Dark Blue */
+}
+
+
+/* Default */
+.audit-person.convener .name {
+    color: var(--primary);
+    transition: color 0.3s ease;
+}
+
+/* Card hover → blue */
+.auditing-board-pro:hover .audit-person.convener .name {
+    color: #1e88e5;
+}
+
+/* Convener button hover → dark blue */
+.audit-hover-actions .btn-outline:hover {
+    background-color: #0d47a1;
+    border-color: #0d47a1;
+}
+
+/* Use :has() for modern browsers */
+.auditing-board-pro:has(.audit-hover-actions .btn-outline:hover)
+.audit-person.convener .name {
+    color: #0d47a1;
+}
+
+
+/* Convener Profile button with background on hover */
+.audit-hover-actions .btn-outline {
+    color: #1e88e5;              /* normal blue text */
+    border: 2px solid #1e88e5;
+    background: transparent;
+    transition: all 0.25s ease;
+}
+
+.audit-hover-actions .btn-outline:hover {
+    background-color: #0d47a1;  /* dark blue background */
+    border-color: #0d47a1;
+    color: #ffffff;
+}
+
+
+.audit-hover-actions .btn-outline:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(13,71,161,0.35);
+}
+
+
+/* Convener Profile – filled style */
+.convener-filled {
+    background-color: #1e88e5;   /* blue */
+    color: #ffffff;
+    border: 2px solid #1e88e5;
+    transition: all 0.25s ease;
+}
+
+.convener-filled:hover {
+    background-color: #0d47a1;   /* dark blue */
+    border-color: #0d47a1;
+}
+
+.audit-hover-actions .btn-outline {
+    background-color: #1e88e5;
+    color: #fff;
+    border-color: #1e88e5;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+   <header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="logo.png" alt="ITQAN Union Logo" class="logo-img">
+            <div class="logo-text">
+                <div class="logo-name">ITQAN FRIENDS</div>
+                <div class="logo-tagline">Intelligent Trainees for Qualified and Networked Professionals</div>
+            </div>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#committee">Core Committee</a></li>
+            <li><a href="#subwings">Sub Wings</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>United for Growth & Excellence</h1>
+            <p>ITQAN Union represents students, workers, and community members, promoting unity, leadership, and responsibility.</p>
+            <div class="hero-btns">
+                <a href="#about" class="btn">Learn More</a>
+                <a href="#committee" class="btn btn-primary">Meet Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <h2 class="section-title">Building <span>Intelligent</span> & <span>Qualified</span> Networks</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To foster unity, leadership, and growth among intelligent trainees and community members.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>Creating a future where skilled and connected professionals drive positive change.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Our Achievements</h3>
+                    <p>Winner of Best Union Award and Mission-20 Publication recognition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Cards Section -->
+    <section class="about-cards">
+        <div class="container">
+            <h2 class="section-title">ITQAN <span>Union</span> Activities</h2>
+            <div class="about-cards-container">
+                <div class="about-card" onclick="window.location.href='publication.html'">
+                    <h3>Publications</h3>
+                    <p>ITQAN Union publishes digital tabloids and magazines promoting knowledge and creativity.</p>
+                </div>
+                
+                <div class="about-card" onclick="window.location.href='achievement.html'">
+                    <h3>Achievements</h3>
+                    <p>Explore our awards, recognitions and successful initiatives over the years.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Committee Section -->
+    <section class="committee-section" id="committee">
+        <div class="container">
+            <div class="committee-header" id="committeeHeader">
+                <h2><i class="fas fa-user-tie"></i> Core Committee</h2>
+                <div class="toggle-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            
+            <div class="committee-grid" id="committeeGrid">
+                <!-- Core Committee Cards with Photo Support -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">President</div>
+                        <div class="name">Sayed Hudaif</div>
+                        <p>Leads union strategy and represents members in high-level decisions.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Sayed Hudaif', 'President', 'Leads union strategy and represents members in high-level decisions.', 'profiles/Hudaif.png')">Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('President Office', 'Leadership', 'The President leads the union strategy and represents members in high-level decisions.')">About</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Vice President</div>
+                        <div class="name">Sayed Burhan</div>
+                        <p>Supports the president and oversees daily union operations.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Sayed Burhan', 'Vice President', 'Supports the president and oversees daily union operations.', 'profiles/Sayyid-Burhan.png')">Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Vice President Office', 'Leadership', 'The Vice President supports the president and oversees daily union operations.')">About</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Secretary</div>
+                        <div class="name">Zidan</div>
+                        <p>Manages union records, correspondence, and meeting minutes.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zidan', 'Secretary', 'Manages union records, correspondence, and meeting minutes.', 'profiles/Zidan.png')">Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Secretary Office', 'Administration', 'The Secretary manages union records, correspondence, and meeting minutes.')">About</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Joint Secretary</div>
+                        <div class="name">Muhyudheen</div>
+                        <p>Assists the secretary and handles specific administrative tasks.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhyudheen', 'Joint Secretary', 'Assists the secretary and handles specific administrative tasks.', 'profiles/Muhyudheen.png')">Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Joint Secretary Office', 'Administration', 'The Joint Secretary assists the secretary and handles specific administrative tasks.')">About</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Treasurer</div>
+                        <div class="name">Mirsad</div>
+                        <p>Manages union finances, budgets, and financial reporting.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Mirsad', 'Treasurer', 'Manages union finances, budgets, and financial reporting.', 'profiles/Mirsad.png')">Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Treasurer Office', 'Finance', 'The Treasurer manages union finances, budgets, and financial reporting.')">About</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Financial Manager</div>
+                        <div class="name">Thanzeeh</div>
+                        <p>Oversees financial operations and ensures fiscal responsibility.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Thanzeeh', 'Financial Manager', 'Oversees financial operations and ensures fiscal responsibility.', 'profiles/Thanzeeh.png')">Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Financial Management', 'Finance', 'The Financial Manager oversees financial operations and ensures fiscal responsibility.')">About</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- P.R.O Card -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">P.R.O</div>
+                        <div class="name">Shahzad</div>
+                        <p>Public Relations Officer - Manages external communications and media relations.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shahzad', 'P.R.O', 'Public Relations Officer - Manages external communications and media relations.', 'profiles/Shahzad.png')">Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('P.R.O Office', 'Public Relations', 'The Public Relations Officer manages external communications and media relations for the union.')">About</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auditing Board Card -->
+<div class="committee-card auditing-board-pro">
+    
+    <div class="audit-header">
+        <i class="fas fa-shield-alt"></i>
+        <span>Auditing Board</span>
+    </div>
+
+    <div class="audit-members">
+        <div class="audit-person">
+            <div class="role">Chairman</div>
+            <div class="name">Adnan</div>
+        </div>
+
+        <div class="audit-divider"></div>
+
+<div class="audit-person convener">
+    <div class="role">Convener</div>
+    <div class="name">Rashad</div>
+</div>
+
+    </div>
+
+    <p class="audit-desc">
+        Ensures financial integrity, conducts audits, and maintains transparency
+        across all union financial operations.
+    </p>
+
+    <!-- HOVER ACTIONS -->
+    <div class="audit-hover-actions">
+        <button class="btn btn-compact"
+            onclick="showProfile('Adnan','Auditing Board Chair','Oversees financial audits and governance.','profiles/Adnan.png')">
+            Chair Profile
+        </button>
+
+        <button class="btn btn-compact convener-filled"
+            onclick="showProfile('Rashad','Auditing Board Convener','Supports audits and compliance.','profiles/Rashad.png')">
+            Convener Profile
+        </button>
+    </div>
+
+</div>
+
+
+                </div>
+            </div>
+        </div>        
+    </section>
+    <!-- Subwings Section -->
+    <section class="committee-section" id="subwings">
+        <div class="container">
+            <div class="committee-header" id="subwingsHeader">
+                <h2><i class="fas fa-sitemap"></i> Union Sub Wings</h2>
+                <div class="toggle-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            
+            <div class="committee-grid" id="subwingsGrid">
+                <!-- Urdu Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Urdu Wing</div>
+                        <div class="name">Chairman: Muhammed V.K</div>
+                        <div class="name">Convener: Hisham</div>
+                        <p>Focuses on promoting Urdu language and literature among members through workshops and cultural events.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed V.K', 'Urdu Wing Chairman', 'Responsible for leading the Urdu Wing activities and initiatives.', 'profiles/Muhammed V.K.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Hisham', 'Urdu Wing Convener', 'Assists the chairman and coordinates daily activities of the Urdu Wing.', 'profiles/Hisham.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Urdu Wing', 'Language Department', 'The Urdu Wing focuses on promoting Urdu language and literature among members.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- English Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">English Wing</div>
+                        <div class="name">Chairman: Mujeeb</div>
+                        <div class="name">Convener: Zameen</div>
+                        <p>Enhances English language skills through workshops, speaking sessions, and communication activities.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Mujeeb', 'English Wing Chairman', 'Leads the English Wing focusing on language proficiency and communication skills.', 'profiles/Mujeeb.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zameen', 'English Wing Convener', 'Coordinates English language workshops and speaking sessions.', 'profiles/Zameen.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('English Wing', 'Language Department', 'The English Wing enhances English language skills through workshops and activities.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Arabic Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Arabic Wing</div>
+                        <div class="name">Chairman: Naseem</div>
+                        <div class="name">Convener: Razeen</div>
+                        <p>Promotes Arabic language and Islamic studies through classes, cultural events, and study groups.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Naseem', 'Arabic Wing Chairman', 'Oversees Arabic language programs and cultural activities.', 'profiles/Naseem.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Razeen', 'Arabic Wing Convener', 'Assists in organizing Arabic language classes and cultural events.', 'profiles/Razeen.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Arabic Wing', 'Language Department', 'The Arabic Wing promotes Arabic language and Islamic studies.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Malayalam Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Malayalam Wing</div>
+                        <div class="name">Chairman: Rabeeh</div>
+                        <div class="name">Convener: Muzzammil</div>
+                        <p>Focuses on regional language and culture through language programs and cultural exchange.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Rabeeh', 'Malayalam Wing Chairman', 'Coordinates Malayalam language and cultural activities.', 'profiles/Rabeeh.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muzzammil', 'Malayalam Wing Convener', 'Assists in organizing Malayalam language programs and events.', 'profiles/Muzzammil.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Malayalam Wing', 'Language Department', 'The Malayalam Wing focuses on regional language and culture.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Song & Recitation -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Song & Recitation</div>
+                        <div class="name">Chairman: Ridhan</div>
+                        <p>Organizes musical events, nasheed competitions, and recitation programs for cultural enrichment.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Ridhan', 'Song & Recitation Chairman', 'Leads musical and recitation activities for the union.', 'profiles/Ridhan.png')">Chairman</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Song & Recitation Wing', 'Arts Department', 'This wing organizes musical events, nasheed competitions, and recitation programs.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Maths Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Maths Wing</div>
+                        <div class="name">Chairman: Muhammed U</div>
+                        <div class="name">Convener: Muhammed PP</div>
+                        <p>Organizes math competitions, workshops, problem-solving sessions, and study groups.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed U', 'Maths Wing Chairman', 'Oversees mathematics-related activities and competitions.', 'profiles/muhammed U.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed PP', 'Maths Wing Convener', 'Coordinates math workshops, problem-solving sessions, and competitions.', 'profiles/Muhammed P.P.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Maths Wing', 'Academic Department', 'The Maths Wing organizes math competitions, workshops, and study sessions.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Art Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Art Wing</div>
+                        <div class="name">Chairman: Ranif</div>
+                        <div class="name">Convener: Rashad</div>
+                        <p>Promotes creativity through drawing, painting, design workshops, and art exhibitions.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Ranif', 'Art Wing Chairman', 'Leads artistic and creative activities for the union.', 'profiles/Ranif.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Rashad', 'Art Wing Convener', 'Assists in organizing art workshops, exhibitions, and creative sessions.', 'profiles/Rashad.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Art Wing', 'Arts Department', 'The Art Wing promotes creativity through drawing, painting, and design workshops.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Library Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Library Wing</div>
+                        <div class="name">Chairman: Razin</div>
+                        <div class="name">Convener: Adnan</div>
+                        <p>Organizes book clubs, reading sessions, and manages the union library resources.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Razin', 'Library Wing Chairman', 'Manages library resources and reading programs.', 'profiles/Razin.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Adnan', 'Library Wing Convener', 'Assists in managing library operations and organizing reading sessions.', 'profiles/Adnan.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Library Wing', 'Academic Department', 'The Library Wing organizes book clubs, reading sessions, and manages union library.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Geography Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Geography Wing</div>
+                        <div class="name">Chairman: Zayin</div>
+                        <div class="name">Convener: Salah</div>
+                        <p>Focuses on geographical knowledge, environmental awareness, and exploration activities.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zayin', 'Geography Wing Chairman', 'Leads geographical studies and exploration activities.', 'profiles/Zayin.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Salah', 'Geography Wing Convener', 'Coordinates geography workshops, field trips, and map studies.', 'profiles/Salah.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Geography Wing', 'Academic Department', 'The Geography Wing focuses on geographical knowledge and environmental awareness.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- G.K Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">G.K Wing</div>
+                        <div class="name">Chairman: Fuad M.A</div>
+                        <div class="name">Convener: Aslah</div>
+                        <p>Organizes quizzes, debates, and current affairs discussions to enhance general knowledge.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fuad M.A', 'G.K Wing Chairman', 'Oversees general knowledge activities and quiz competitions.', 'profiles/Fuad M.A.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Aslah', 'G.K Wing Convener', 'Organizes quiz competitions, debates, and current affairs discussions.', 'profiles/Aslah.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('G.K Wing', 'Academic Department', 'The G.K Wing organizes quizzes, debates, and current affairs discussions.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Science Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Science Wing</div>
+                        <div class="name">Chairman: Shabeel</div>
+                        <div class="name">Convener: Muhaimin</div>
+                        <p>Organizes science fairs, experiments, tech workshops, and scientific demonstrations.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shabeel', 'Science Wing Chairman', 'Leads scientific activities and experiments for the union.', 'profiles/Shabeel.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhaimin', 'Science Wing Convener', 'Coordinates science experiments, demonstrations, and workshops.', 'profiles/Muhaimin.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Science Wing', 'Academic Department', 'The Science Wing organizes science fairs, experiments, and tech workshops.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Publication Wing</div>
+                        <div class="name">Chairman: Fidyan</div>
+                        <div class="name">Convener: Zarhan</div>
+                        <p>Manages union publications, newsletters, and digital content creation.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fidyan', 'Publication Wing Chairman', 'Coordinates publication activities and content creation.', 'profiles/Fidyan.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zarhan', 'Publication Wing Convener', 'Organizes publication events and manages content distribution.', 'profiles/Zarhan.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Publication Wing', 'Media Department', 'The Publication Wing manages union publications, newsletters, and digital content.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Media Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Media Wing</div>
+                        <div class="name">Chairman: Muhammed S.M</div>
+                        <div class="name">Convener: Shahzad</div>
+                        <p>Handles photography, video production, social media management, and communications.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed S.M', 'Media Wing Chairman', 'Oversees media production and communications for the union.', 'profiles/Muhammed S.M.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shahzad', 'Media Wing Convener', 'Manages photography, video editing, and social media content.', 'profiles/Shahzad.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Media Wing', 'Communications Department', 'The Media Wing handles photography, video production, and social media management.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medical Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Medical Wing</div>
+                        <div class="name">Chairman: Nuhman</div>
+                        <div class="name">Convener: Abdu Rahman</div>
+                        <p>Organizes health camps, first aid training, and medical awareness sessions.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Nuhman', 'Medical Wing Chairman', 'Leads health awareness and medical assistance programs.', 'profiles/Nuhman.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Abdu Rahman', 'Medical Wing Convener', 'Organizes health camps and first aid training sessions.', 'profiles/abdu-rahman.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Medical Wing', 'Health Department', 'The Medical Wing organizes health camps, first aid training, and medical awareness sessions.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sports Wing -->
+                <div class="committee-card">
+                    <div class="card-top">
+                        <div class="position">Sports Wing</div>
+                        <div class="name">Chairman: Fuad Habeeb</div>
+                        <p>Organizes tournaments, fitness programs, and recreational activities for physical development.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="card-buttons">
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fuad Habeeb', 'Sports Wing Chairman', 'Coordinates all sports activities and tournaments for the union.', 'profiles/Habeeb.png')">Chairman</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Sports Wing', 'Physical Education Department', 'The Sports Wing organizes tournaments, fitness programs, and recreational activities.')">About Wing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Foreign Language Wing -->
+                <div class="committee-card foreign-language">
+                    <div class="card-top">
+                        <div class="position">Foreign Language Wing</div>
+                        <div class="leadership-grid">
+                            <div class="leader-item">
+                                <span class="leader-role">German Chairman</span>
+                                <span class="leader-name">Zameen</span>
+                            </div>
+                            <div class="leader-item">
+                                <span class="leader-role">French Chairman</span>
+                                <span class="leader-name">Muhyudheen</span>
+                            </div>
+                            <div class="leader-item">
+                                <span class="leader-role">French Convener</span>
+                                <span class="leader-name">Muhammed PP</span>
+                            </div>
+                        </div>
+                        <p class="wing-description">Focuses on teaching and promoting foreign languages like German and French among members.</p>
+                    </div>
+                    <div class="card-bottom">
+                        <div class="multi-buttons">
+                            <button class="btn btn-compact" onclick="showProfile('Zameen', 'German Chairman', 'Leads German language programs and cultural exchange activities.', 'profiles/Zameen.png')">
+                                <i class="fas fa-user"></i> German
+                            </button>
+                            <button class="btn btn-compact" onclick="showProfile('Muhyudheen', 'French Chairman', 'Oversees French language learning and francophone culture programs.', 'profiles/Muhyudheen.png')">
+                                <i class="fas fa-user"></i> French (C)
+                            </button>
+                            <button class="btn btn-compact" onclick="showProfile('Muhammed PP', 'French Convener', 'Assists the French Chairman in organizing language classes and events.', 'profiles/Muhammed P.P.png')">
+                                <i class="fas fa-user"></i> French (Conv)
+                            </button>
+                            <button class="btn btn-outline btn-compact" onclick="showAbout('Foreign Language Wing', 'Language Department', 'This wing focuses on teaching and promoting foreign languages like German and French among members.')">
+                                <i class="fas fa-info-circle"></i> About
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>ITQAN UNION</h3>
+                    <p>Intelligent Trainees for Qualified and Networked Professionals. Empowering students and professionals through leadership, collaboration, and training.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#committee">Core Committee</a></li>
+                        <li><a href="#subwings">Sub Wings</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Kannadipparamba dhic</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> itqanfriend786@gamil.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-5pm, Sat: 10am-2pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 ITQAN Union. All Rights Reserved. | Built with Unity & Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced Profile Modal with Photos -->
+    <div class="profile-modal" id="profileModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            
+            <div class="modal-header-with-photo">
+                <div class="profile-photo-container" id="modalPhotoContainer">
+                    <img id="modalPhoto" src="" alt="Profile Photo" class="profile-photo">
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="profile-header-info">
+                    <h3 id="modalTitle">Name</h3>
+                    <p id="modalSubtitle">Position</p>
+                    <div class="wing-badges" id="modalBadges"></div>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <p id="modalDescription">Description will appear here.</p>
+                
+                <div class="details-section" id="modalDetails">
+                    <!-- Dynamic content will go here -->
+                </div>
+                
+                <div class="contact-info" id="modalContactInfo">
+                    <!-- Contact info will appear here -->
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="modalEmailBtn">
+                    <i class="fas fa-envelope"></i> Email
+                </button>
+                <button class="btn btn-primary" id="modalCallBtn">
+                    <i class="fas fa-phone"></i> Call
+                </button>
+                <button class="btn btn-outline" id="modalCloseBtn">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Toggle Committee Section
+        const committeeHeader = document.getElementById('committeeHeader');
+        const committeeGrid = document.getElementById('committeeGrid');
+        
+        committeeHeader.addEventListener('click', () => {
+            committeeHeader.classList.toggle('active');
+            committeeGrid.classList.toggle('active');
+        });
+        
+        // Toggle Subwings Section
+        const subwingsHeader = document.getElementById('subwingsHeader');
+        const subwingsContainer = document.getElementById('subwingsGrid');
+        
+        subwingsHeader.addEventListener('click', () => {
+            subwingsHeader.classList.toggle('active');
+            subwingsContainer.classList.toggle('active');
+        });
+        
+        // Profile Modal Elements
+        const profileModal = document.getElementById('profileModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSubtitle = document.getElementById('modalSubtitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPhoto = document.getElementById('modalPhoto');
+        const photoPlaceholder = document.getElementById('photoPlaceholder');
+        const modalBadges = document.getElementById('modalBadges');
+        const modalDetails = document.getElementById('modalDetails');
+        const modalContactInfo = document.getElementById('modalContactInfo');
+        const modalEmailBtn = document.getElementById('modalEmailBtn');
+        const modalCallBtn = document.getElementById('modalCallBtn');
+        
+        // Profile Data with Photos
+        const profileData = {
+            'Sayed Hudaif': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Setting union strategic direction',
+                    'Representing members in high-level decisions',
+                    'Overseeing all union activities',
+                    'Chairing executive meetings'
+                ],
+                contact: {
+                    email: 'president@itqanunion.org',
+                    phone: '+91 98765 43210'
+                }
+            },
+            'Sayed Burhan': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Supporting the president in strategic decisions',
+                    'Overseeing daily union operations',
+                    'Coordinating between different wings',
+                    'Standing in for president when needed'
+                ],
+                contact: {
+                    email: 'vicepresident@itqanunion.org',
+                    phone: '+91 98765 43211'
+                }
+            },
+            'Zidan': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Maintaining union records and documentation',
+                    'Managing official correspondence',
+                    'Recording and distributing meeting minutes',
+                    'Coordinating communication flow'
+                ],
+                contact: {
+                    email: 'secretary@itqanunion.org',
+                    phone: '+91 98765 43212'
+                }
+            },
+            'Muhyudheen': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Assisting the secretary in daily tasks',
+                    'Handling specific administrative assignments',
+                    'Maintaining membership records',
+                    'Coordinating event logistics'
+                ],
+                contact: {
+                    email: 'jointsecretary@itqanunion.org',
+                    phone: '+91 98765 43213'
+                }
+            },
+            'Mirsad': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Managing union finances and budget',
+                    'Preparing financial reports',
+                    'Handling accounts and transactions',
+                    'Ensuring financial compliance'
+                ],
+                contact: {
+                    email: 'treasurer@itqanunion.org',
+                    phone: '+91 98765 43214'
+                }
+            },
+            'Thanzeeh': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Overseeing all financial operations',
+                    'Ensuring fiscal responsibility',
+                    'Financial planning and analysis',
+                    'Audit preparation and compliance'
+                ],
+                contact: {
+                    email: 'finance@itqanunion.org',
+                    phone: '+91 98765 43215'
+                }
+            },
+            'Shahzad': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Managing external communications',
+                    'Handling media relations and press releases',
+                    'Coordinating public events and campaigns',
+                    'Building community relationships'
+                ],
+                contact: {
+                    email: 'pro@itqanunion.org',
+                    phone: '+91 98765 43216'
+                }
+            },
+            'Adnan': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Chairing the Auditing Board',
+                    'Overseeing financial audits and reviews',
+                    'Ensuring financial transparency',
+                    'Monitoring compliance with financial policies'
+                ],
+                contact: {
+                    email: 'audit.chair@itqanunion.org',
+                    phone: '+91 98765 43217'
+                }
+            },
+            'Rashad': {
+                wing: 'Core Committee',
+                responsibilities: [
+                    'Assisting the Audit Board Chair',
+                    'Coordinating audit procedures',
+                    'Documenting audit findings',
+                    'Preparing audit reports'
+                ],
+                contact: {
+                    email: 'audit.convener@itqanunion.org',
+                    phone: '+91 98765 43218'
+                }
+            }
+        };
+        
+        // Enhanced showProfile function with photo support
+        function showProfile(name, position, description, photoUrl = '') {
+            const profile = profileData[name] || {};
+            
+            modalTitle.textContent = name;
+            modalSubtitle.textContent = position;
+            modalDescription.textContent = description;
+            
+            // Set photo
+            if (photoUrl && photoUrl.trim() !== '') {
+                modalPhoto.src = photoUrl;
+                modalPhoto.style.display = 'block';
+                photoPlaceholder.style.display = 'none';
+                
+                // Set initials in placeholder as fallback
+                const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+                photoPlaceholder.textContent = initials;
+            } else {
+                modalPhoto.style.display = 'none';
+                photoPlaceholder.style.display = 'flex';
+                
+                // Generate initials for placeholder
+                const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+                photoPlaceholder.innerHTML = `<span>${initials}</span>`;
+            }
+            
+            // Set wing badge
+            if (profile.wing) {
+                modalBadges.innerHTML = `<span class="wing-badge">${profile.wing}</span>`;
+            } else if (position.includes('Wing')) {
+                modalBadges.innerHTML = `<span class="wing-badge">${position.split('Wing')[0]} Wing</span>`;
+            } else {
+                modalBadges.innerHTML = '';
+            }
+            
+            // Set responsibilities
+            if (profile.responsibilities && profile.responsibilities.length > 0) {
+                const responsibilitiesHTML = `
+                    <h4><i class="fas fa-tasks"></i> Responsibilities</h4>
+                    <ul>
+                        ${profile.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                    </ul>
+                `;
+                modalDetails.innerHTML = responsibilitiesHTML;
+            } else {
+                // Default responsibilities for leadership positions
+                if (position.includes('Chairman') || position.includes('Convener') || position.includes('President') || position.includes('Secretary') || position.includes('Treasurer')) {
+                    modalDetails.innerHTML = `
+                        <h4><i class="fas fa-tasks"></i> Responsibilities</h4>
+                        <ul>
+                            <li>Leading activities and meetings</li>
+                            <li>Coordinating with other members</li>
+                            <li>Reporting to higher authorities</li>
+                            <li>Organizing events and programs</li>
+                        </ul>
+                    `;
+                } else {
+                    modalDetails.innerHTML = '';
+                }
+            }
+            
+            // Set contact info
+            if (profile.contact) {
+                const contactHTML = `
+                    <h4><i class="fas fa-address-card"></i> Contact Information</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>${profile.contact.email}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>${profile.contact.phone}</span>
+                    </div>
+                `;
+                modalContactInfo.innerHTML = contactHTML;
+                
+                // Update contact buttons
+                modalEmailBtn.onclick = () => {
+                    window.location.href = `mailto:${profile.contact.email}`;
+                };
+                modalCallBtn.onclick = () => {
+                    window.location.href = `tel:${profile.contact.phone}`;
+                };
+                modalEmailBtn.style.display = 'inline-block';
+                modalCallBtn.style.display = 'inline-block';
+            } else {
+                // Default contact info
+                modalContactInfo.innerHTML = `
+                    <h4><i class="fas fa-info-circle"></i> Contact Information</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>${name.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>Contact via union office</span>
+                    </div>
+                `;
+                
+                modalEmailBtn.onclick = () => {
+                    window.location.href = `mailto:${name.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org`;
+                };
+                modalCallBtn.onclick = () => {
+                    alert(`Please contact the ITQAN Union office for ${name}'s contact details.`);
+                };
+                modalEmailBtn.style.display = 'inline-block';
+                modalCallBtn.style.display = 'inline-block';
+            }
+            
+            profileModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Enhanced showAbout function for wings
+        function showAbout(wingName, department, description) {
+            modalTitle.textContent = wingName;
+            modalSubtitle.textContent = department;
+            modalDescription.textContent = description;
+            
+            // Set wing photo
+            const wingPhoto = `wings/${wingName.toLowerCase().replace(/\s+/g, '-')}.jpg`;
+            modalPhoto.src = wingPhoto;
+            modalPhoto.onerror = function() {
+                modalPhoto.style.display = 'none';
+                photoPlaceholder.style.display = 'flex';
+                photoPlaceholder.innerHTML = `<i class="fas fa-users"></i>`;
+            };
+            modalPhoto.style.display = 'block';
+            photoPlaceholder.style.display = 'none';
+            
+            // Set wing badge
+            modalBadges.innerHTML = `<span class="wing-badge">${wingName}</span>`;
+            
+            // Set wing activities
+            modalDetails.innerHTML = `
+                <h4><i class="fas fa-calendar-check"></i> Key Activities</h4>
+                <ul>
+                    <li>Regular meetings and workshops</li>
+                    <li>Skill development programs</li>
+                    <li>Competitions and events</li>
+                    <li>Community outreach initiatives</li>
+                    <li>Training and mentoring sessions</li>
+                </ul>
+            `;
+            
+            // Set wing contact info
+            modalContactInfo.innerHTML = `
+                <h4><i class="fas fa-info-circle"></i> Wing Information</h4>
+                <div class="contact-item">
+                    <i class="fas fa-users"></i>
+                    <span>Multiple members and coordinators</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>${wingName.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Activities: Weekly meetings, monthly events</span>
+                </div>
+            `;
+            
+            // Update contact buttons for wing
+            modalEmailBtn.onclick = () => {
+                window.location.href = `mailto:${wingName.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org`;
+            };
+            modalCallBtn.onclick = () => {
+                alert(`Please contact the ${wingName} Chairman for more information.`);
+            };
+            
+            profileModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close modal
+        function closeModal() {
+            profileModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        modalClose.addEventListener('click', closeModal);
+        modalCloseBtn.addEventListener('click', closeModal);
+        
+        // Close modal when clicking outside
+        profileModal.addEventListener('click', (e) => {
+            if (e.target === profileModal) {
+                closeModal();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .committee-card, .about-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
