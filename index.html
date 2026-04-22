@@ -194,6 +194,10 @@
             color: var(--primary);
             cursor: pointer;
             z-index: 1001;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Hero Section */
@@ -236,6 +240,20 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            60% {
+                transform: translateY(-5px) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -386,7 +404,7 @@
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            overflow: hidden;
+            overflow: visible;
             transition: var(--transition);
             position: relative;
             min-height: 320px;
@@ -423,21 +441,27 @@
             margin-bottom: 1rem;
         }
 
-        /* FIXED: Card bottom buttons - now visible on scroll */
+        /* Card bottom buttons - with pop animation */
         .card-bottom {
             padding: 1.5rem;
             background-color: rgba(26, 58, 95, 0.05);
             text-align: center;
             opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
+            transform: translateY(30px) scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
         }
 
-        /* Show buttons when card is scrolled into view (visible class) OR on hover */
-        .committee-card.visible .card-bottom,
+        /* Pop animation when visible */
+        .committee-card.visible .card-bottom {
+            animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Hover keeps it visible */
         .committee-card:hover .card-bottom {
             opacity: 1 !important;
-            transform: translateY(0) !important;
+            transform: translateY(0) scale(1) !important;
+            animation: none;
         }
 
         .card-buttons {
@@ -840,10 +864,14 @@
             justify-content: center;
         }
 
-        #subwingsGrid .committee-card.visible .card-bottom,
+        #subwingsGrid .committee-card.visible .card-bottom {
+            animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
         #subwingsGrid .committee-card:hover .card-bottom {
             opacity: 1 !important;
-            transform: translateY(0) !important;
+            transform: translateY(0) scale(1) !important;
+            animation: none;
         }
 
         /* Foreign Language Wing Special Styling */
@@ -928,6 +956,21 @@
             flex-grow: 1;
         }
 
+        .foreign-language .card-bottom {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+        }
+
+        .foreign-language.visible .card-bottom {
+            animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .foreign-language:hover .card-bottom {
+            opacity: 1 !important;
+            transform: translateY(0) scale(1) !important;
+            animation: none;
+        }
+
         /* Auditing Board Special Styling */
         .auditing-board-pro {
             border: none;
@@ -936,7 +979,7 @@
             padding: 2rem;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .audit-header {
@@ -995,24 +1038,25 @@
             margin: 1.2rem 0 1.8rem;
         }
 
-        /* FIXED: Auditing Board hover actions - now visible on scroll */
+        /* Auditing Board hover actions - with pop animation */
         .audit-hover-actions {
-            position: absolute;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
             display: flex;
             gap: 0.6rem;
+            justify-content: center;
             opacity: 0;
-            pointer-events: none;
-            transition: all 0.35s ease;
+            transform: translateY(30px) scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            margin-top: 0.5rem;
         }
 
-        .auditing-board-pro.visible .audit-hover-actions,
+        .auditing-board-pro.visible .audit-hover-actions {
+            animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
         .auditing-board-pro:hover .audit-hover-actions {
             opacity: 1 !important;
-            transform: translateX(-50%) translateY(0) !important;
-            pointer-events: auto;
+            transform: translateY(0) scale(1) !important;
+            animation: none;
         }
 
         .audit-person.convener .name {
@@ -1060,12 +1104,6 @@
             border-color: #0d47a1;
         }
 
-        .audit-hover-actions .btn-outline {
-            background-color: #1e88e5;
-            color: #fff;
-            border-color: #1e88e5;
-        }
-
         /* Responsive Styles */
         @media (max-width: 992px) {
             .about-cards-container {
@@ -1078,6 +1116,10 @@
         }
 
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
             .nav-links {
                 display: none;
                 position: fixed;
@@ -1091,18 +1133,22 @@
                 align-items: center;
                 gap: 2rem;
                 z-index: 1000;
+                text-align: center;
             }
             
             .nav-links.active {
                 display: flex;
             }
             
-            .nav-links a {
-                font-size: 1.3rem;
+            .nav-links li {
+                width: 100%;
+                text-align: center;
             }
-            
-            .mobile-menu-btn {
+
+            .nav-links a {
+                font-size: 1.5rem;
                 display: block;
+                padding: 10px 20px;
             }
             
             .hero {
@@ -1118,13 +1164,12 @@
             }
             
             .committee-header, .subwings-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+                flex-direction: row;
+                align-items: center;
             }
-            
+
             .committee-header h2, .subwings-header h2 {
-                font-size: 1.8rem;
+                font-size: 1.3rem;
             }
 
             .modal-header-with-photo {
@@ -1140,6 +1185,18 @@
             
             .profile-header-info h3 {
                 font-size: 1.7rem;
+            }
+
+            .logo-name {
+                font-size: 1.4rem;
+            }
+
+            .logo-tagline {
+                font-size: 0.75rem;
+            }
+
+            .logo-img {
+                height: 50px;
             }
         }
 
@@ -1164,6 +1221,14 @@
 
             .multi-buttons {
                 grid-template-columns: 1fr;
+            }
+
+            .committee-header h2, .subwings-header h2 {
+                font-size: 1.1rem;
+            }
+
+            .toggle-icon {
+                font-size: 1.3rem;
             }
         }
 
@@ -1820,6 +1885,14 @@
                 : '<i class="fas fa-bars"></i>';
         });
         
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
         // Toggle Committee Section
         const committeeHeader = document.getElementById('committeeHeader');
         const committeeGrid = document.getElementById('committeeGrid');
@@ -2039,10 +2112,10 @@
             });
         });
         
-        // FIXED: Animation on scroll - adds 'visible' class to show buttons
+        // Animation on scroll - adds 'visible' class with pop animation
         const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -20px 0px'
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
         };
         
         const observer = new IntersectionObserver((entries) => {
@@ -2050,7 +2123,7 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    // Add visible class to show buttons
+                    // Add visible class to trigger pop animation for buttons
                     entry.target.classList.add('visible');
                 }
             });
@@ -2064,11 +2137,21 @@
             observer.observe(el);
         });
 
-        // Also make sure any visible cards on load get the visible class
+        // Check for already visible cards on load
         window.addEventListener('load', () => {
             document.querySelectorAll('.committee-card').forEach(card => {
                 const rect = card.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+                    card.classList.add('visible');
+                }
+            });
+        });
+        
+        // Also check on scroll for any missed cards
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.committee-card:not(.visible)').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
                     card.classList.add('visible');
                 }
             });
