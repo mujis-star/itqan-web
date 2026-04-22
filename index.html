@@ -96,6 +96,7 @@
             background-color: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
+            box-shadow: none;
         }
 
         .btn-outline:hover {
@@ -132,11 +133,11 @@
         }
 
         .logo-img {
-        height: 70px;
-        width: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+            height: 70px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .logo-text {
@@ -388,7 +389,8 @@
             overflow: hidden;
             transition: var(--transition);
             position: relative;
-            height: 320px;
+            min-height: 320px;
+            height: auto;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -421,6 +423,7 @@
             margin-bottom: 1rem;
         }
 
+        /* FIXED: Card bottom buttons - now visible on scroll */
         .card-bottom {
             padding: 1.5rem;
             background-color: rgba(26, 58, 95, 0.05);
@@ -430,9 +433,11 @@
             transition: var(--transition);
         }
 
+        /* Show buttons when card is scrolled into view (visible class) OR on hover */
+        .committee-card.visible .card-bottom,
         .committee-card:hover .card-bottom {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
 
         .card-buttons {
@@ -809,7 +814,7 @@
             margin-top: 1.5rem;
         }
 
-        /* Fix for sub-wing cards with multiple names */
+        /* Fix for sub-wing cards */
         #subwingsGrid .committee-card .card-top {
             padding: 1.5rem 1.5rem 1rem;
         }
@@ -827,13 +832,18 @@
             line-height: 1.5;
         }
 
-        /* Ensure buttons are visible on hover */
         #subwingsGrid .committee-card .card-bottom {
             padding: 1rem 1.5rem;
             min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        #subwingsGrid .committee-card.visible .card-bottom,
+        #subwingsGrid .committee-card:hover .card-bottom {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
         }
 
         /* Foreign Language Wing Special Styling */
@@ -909,7 +919,6 @@
             font-size: 0.8rem;
         }
 
-        /* Make sure card has enough height */
         .foreign-language {
             min-height: 380px;
             height: auto;
@@ -917,6 +926,144 @@
 
         .foreign-language .card-top {
             flex-grow: 1;
+        }
+
+        /* Auditing Board Special Styling */
+        .auditing-board-pro {
+            border: none;
+            background: linear-gradient(135deg, #fff 60%, rgba(214,40,40,0.08));
+            box-shadow: 0 15px 40px rgba(214,40,40,0.15);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audit-header {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--secondary);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .audit-header i {
+            font-size: 1.1rem;
+        }
+
+        .audit-members {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .audit-person {
+            text-align: center;
+        }
+
+        .audit-person .role {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+
+        .audit-person .name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .audit-divider {
+            width: 1px;
+            height: 45px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .audit-desc {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+            margin: 1.2rem 0 1.8rem;
+        }
+
+        /* FIXED: Auditing Board hover actions - now visible on scroll */
+        .audit-hover-actions {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            display: flex;
+            gap: 0.6rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s ease;
+        }
+
+        .auditing-board-pro.visible .audit-hover-actions,
+        .auditing-board-pro:hover .audit-hover-actions {
+            opacity: 1 !important;
+            transform: translateX(-50%) translateY(0) !important;
+            pointer-events: auto;
+        }
+
+        .audit-person.convener .name {
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .auditing-board-pro:hover .audit-person.convener .name {
+            color: #1e88e5;
+        }
+
+        .audit-hover-actions .btn-outline:hover {
+            background-color: #0d47a1;
+            border-color: #0d47a1;
+        }
+
+        .auditing-board-pro:has(.audit-hover-actions .btn-outline:hover) .audit-person.convener .name {
+            color: #0d47a1;
+        }
+
+        .audit-hover-actions .btn-outline {
+            color: #1e88e5;
+            border: 2px solid #1e88e5;
+            background: transparent;
+            transition: all 0.25s ease;
+        }
+
+        .audit-hover-actions .btn-outline:hover {
+            background-color: #0d47a1;
+            border-color: #0d47a1;
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(13,71,161,0.35);
+        }
+
+        .convener-filled {
+            background-color: #1e88e5;
+            color: #ffffff;
+            border: 2px solid #1e88e5;
+            transition: all 0.25s ease;
+        }
+
+        .convener-filled:hover {
+            background-color: #0d47a1;
+            border-color: #0d47a1;
+        }
+
+        .audit-hover-actions .btn-outline {
+            background-color: #1e88e5;
+            color: #fff;
+            border-color: #1e88e5;
         }
 
         /* Responsive Styles */
@@ -980,7 +1127,6 @@
                 font-size: 1.8rem;
             }
 
-            /* Responsive profile modal */
             .modal-header-with-photo {
                 flex-direction: column;
                 text-align: center;
@@ -1021,257 +1167,51 @@
             }
         }
 
-/* Auditing Board Special Styling */
-.auditing-board-card {
-    border: 2px solid var(--secondary);
-    background: linear-gradient(to right, rgba(214, 40, 40, 0.05), white);
-}
-
-.auditing-board-card .position {
-    color: var(--secondary);
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-}
-
-.auditing-board-card .leader-item {
-    background: rgba(214, 40, 40, 0.1);
-}
-
-.auditing-board-card .leader-item:hover {
-    background: rgba(214, 40, 40, 0.2);
-}
-
-.auditing-board-card .leader-role {
-    color: var(--secondary);
-}
-
-/* Make sure card has enough height */
-.auditing-board-card {
-    min-height: 380px;
-    height: auto;
-}
-
-.auditing-board-card .card-top {
-    flex-grow: 1;
-}
-
-/* === Premium Auditing Board Card === */
-.auditing-board-pro {
-    border: none;
-    background: linear-gradient(135deg, #fff 60%, rgba(214,40,40,0.08));
-    box-shadow: 0 15px 40px rgba(214,40,40,0.15);
-    padding: 2rem;
-    text-align: center;
-    position: relative;
-}
-
-.audit-header {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--secondary);
-    color: #fff;
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 1.8rem;
-}
-
-.audit-header i {
-    font-size: 1.1rem;
-}
-
-.audit-members {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.audit-person {
-    text-align: center;
-}
-
-.audit-person .role {
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--gray);
-    margin-bottom: 4px;
-}
-
-.audit-person .name {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--primary);
-}
-
-.audit-divider {
-    width: 1px;
-    height: 45px;
-    background: rgba(0,0,0,0.1);
-}
-
-.audit-desc {
-    font-size: 0.95rem;
-    color: #444;
-    line-height: 1.6;
-    margin: 1.2rem 0 1.8rem;
-}
-
-.audit-actions {
-    display: flex;
-    gap: 0.8rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-/* === Auditing Board Hover Buttons === */
-.auditing-board-pro {
-    position: relative;
-    overflow: hidden;
-}
-
-.audit-hover-actions {
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    display: flex;
-    gap: 0.6rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.35s ease;
-}
-
-.auditing-board-pro:hover .audit-hover-actions {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
-}
-
-
-/* ===== Convener Hover Color Logic ===== */
-
-/* Default color */
-.audit-person.convener .name {
-    color: var(--primary);
-    transition: color 0.3s ease;
-}
-
-/* When hovering the whole card → BLUE */
-.auditing-board-pro:hover .audit-person.convener .name {
-    color: #1e88e5; /* Blue */
-}
-
-/* When hovering ONLY the convener button → DARK BLUE */
-.auditing-board-pro .audit-hover-actions button:last-child:hover
-~ .audit-person.convener .name {
-    color: #0d47a1; /* Dark Blue */
-}
-
-
-/* Default */
-.audit-person.convener .name {
-    color: var(--primary);
-    transition: color 0.3s ease;
-}
-
-/* Card hover → blue */
-.auditing-board-pro:hover .audit-person.convener .name {
-    color: #1e88e5;
-}
-
-/* Convener button hover → dark blue */
-.audit-hover-actions .btn-outline:hover {
-    background-color: #0d47a1;
-    border-color: #0d47a1;
-}
-
-/* Use :has() for modern browsers */
-.auditing-board-pro:has(.audit-hover-actions .btn-outline:hover)
-.audit-person.convener .name {
-    color: #0d47a1;
-}
-
-
-/* Convener Profile button with background on hover */
-.audit-hover-actions .btn-outline {
-    color: #1e88e5;              /* normal blue text */
-    border: 2px solid #1e88e5;
-    background: transparent;
-    transition: all 0.25s ease;
-}
-
-.audit-hover-actions .btn-outline:hover {
-    background-color: #0d47a1;  /* dark blue background */
-    border-color: #0d47a1;
-    color: #ffffff;
-}
-
-
-.audit-hover-actions .btn-outline:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(13,71,161,0.35);
-}
-
-
-/* Convener Profile – filled style */
-.convener-filled {
-    background-color: #1e88e5;   /* blue */
-    color: #ffffff;
-    border: 2px solid #1e88e5;
-    transition: all 0.25s ease;
-}
-
-.convener-filled:hover {
-    background-color: #0d47a1;   /* dark blue */
-    border-color: #0d47a1;
-}
-
-.audit-hover-actions .btn-outline {
-    background-color: #1e88e5;
-    color: #fff;
-    border-color: #1e88e5;
-}
-
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light: #1a1a1a;
+                --dark: #f8f9fa;
+                --primary: #4a90e2;
+            }
+            body { background-color: #121212; color: var(--dark); }
+            .feature-card, .committee-card { background-color: #1e1e1e; }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
-   <header>
-    <div class="container header-container">
-        <div class="logo">
-            <img src="logo.png" alt="ITQAN Union Logo" class="logo-img">
-            <div class="logo-text">
-                <div class="logo-name">ITQAN FRIENDS</div>
-                <div class="logo-tagline">Intelligent Trainees for Qualified and Networked Professionals</div>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="ITQAN Union Logo" class="logo-img">
+                <div class="logo-text">
+                    <div class="logo-name">ITQAN UNION</div>
+                    <div class="logo-tagline">Intelligent Trainees for Qualified and Networked Professionals</div>
+                </div>
             </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#committee">Core Committee</a></li>
+                <li><a href="#subwings">Sub Wings</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-        
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#committee">Core Committee</a></li>
-            <li><a href="#subwings">Sub Wings</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</header>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>United for Growth & Excellence</h1>
-            <p>ITQAN Union represents students, workers, and community members, promoting unity, leadership, and responsibility.</p>
+            <h1>United for Professional Growth & Excellence</h1>
+            <p>ITQAN Union represents students, workers, and community members, fostering leadership, responsibility, and a network of qualified professionals.</p>
             <div class="hero-btns">
-                <a href="#about" class="btn">Learn More</a>
-                <a href="#committee" class="btn btn-primary">Meet Our Team</a>
+                <a href="#about" class="btn">Discover More</a>
+                <a href="#committee" class="btn btn-primary">Meet Our Leadership</a>
             </div>
         </div>
     </section>
@@ -1279,14 +1219,14 @@
     <!-- Features Section -->
     <section class="features" id="about">
         <div class="container">
-            <h2 class="section-title">Building <span>Intelligent</span> & <span>Qualified</span> Networks</h2>
+            <h2 class="section-title">Cultivating <span>Intelligent</span> and <span>Qualified</span> Professional Networks</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Our Mission</h3>
-                    <p>To foster unity, leadership, and growth among intelligent trainees and community members.</p>
+                    <p>To foster a unified community that champions leadership, continuous growth, and collaboration among intelligent trainees and professionals.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -1294,7 +1234,7 @@
                         <i class="fas fa-eye"></i>
                     </div>
                     <h3>Our Vision</h3>
-                    <p>Creating a future where skilled and connected professionals drive positive change.</p>
+                    <p>To be the cornerstone for skilled and interconnected professionals, driving positive and sustainable change within our community and beyond.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -1302,7 +1242,7 @@
                         <i class="fas fa-trophy"></i>
                     </div>
                     <h3>Our Achievements</h3>
-                    <p>Winner of Best Union Award and Mission-20 Publication recognition.</p>
+                    <p>Recognized with the Best Union Award and featured in Mission-20 Publication for our impactful initiatives and community contributions.</p>
                 </div>
             </div>
         </div>
@@ -1311,16 +1251,16 @@
     <!-- About Cards Section -->
     <section class="about-cards">
         <div class="container">
-            <h2 class="section-title">ITQAN <span>Union</span> Activities</h2>
+            <h2 class="section-title">ITQAN <span>Union</span> Initiatives</h2>
             <div class="about-cards-container">
                 <div class="about-card" onclick="window.location.href='publication.html'">
-                    <h3>Publications</h3>
-                    <p>ITQAN Union publishes digital tabloids and magazines promoting knowledge and creativity.</p>
+                    <h3>Publications & Media</h3>
+                    <p>Explore our digital tabloids, magazines, and media content designed to promote knowledge, creativity, and union activities.</p>
                 </div>
                 
                 <div class="about-card" onclick="window.location.href='achievement.html'">
-                    <h3>Achievements</h3>
-                    <p>Explore our awards, recognitions and successful initiatives over the years.</p>
+                    <h3>Awards & Recognitions</h3>
+                    <p>Review our portfolio of awards, milestones, and successful programs that highlight our commitment to excellence.</p>
                 </div>
             </div>
         </div>
@@ -1330,166 +1270,161 @@
     <section class="committee-section" id="committee">
         <div class="container">
             <div class="committee-header" id="committeeHeader">
-                <h2><i class="fas fa-user-tie"></i> Core Committee</h2>
+                <h2><i class="fas fa-user-tie"></i> Executive Core Committee</h2>
                 <div class="toggle-icon">
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
             
             <div class="committee-grid" id="committeeGrid">
-                <!-- Core Committee Cards with Photo Support -->
+                <!-- President -->
                 <div class="committee-card">
                     <div class="card-top">
                         <div class="position">President</div>
                         <div class="name">Sayed Hudaif</div>
-                        <p>Leads union strategy and represents members in high-level decisions.</p>
+                        <p>Leads strategic planning and represents the union in all high-level external engagements.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Sayed Hudaif', 'President', 'Leads union strategy and represents members in high-level decisions.', 'profiles/Hudaif.png')">Profile</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('President Office', 'Leadership', 'The President leads the union strategy and represents members in high-level decisions.')">About</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Sayed Hudaif', 'President', 'Provides strategic direction and acts as the primary representative of the union.', 'profiles/Hudaif.png')">View Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Office of the President', 'Executive Leadership', 'The President defines the union\'s strategic vision, chairs executive meetings, and represents the membership in official capacities.')">About Office</button>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Vice President -->
                 <div class="committee-card">
                     <div class="card-top">
                         <div class="position">Vice President</div>
                         <div class="name">Sayed Burhan</div>
-                        <p>Supports the president and oversees daily union operations.</p>
+                        <p>Supports the President and oversees the operational efficiency of the union.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Sayed Burhan', 'Vice President', 'Supports the president and oversees daily union operations.', 'profiles/Sayyid-Burhan.png')">Profile</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Vice President Office', 'Leadership', 'The Vice President supports the president and oversees daily union operations.')">About</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Sayed Burhan', 'Vice President', 'Assists the President and ensures seamless daily operations across all departments.', 'profiles/Sayyid-Burhan.png')">View Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Office of the Vice President', 'Executive Operations', 'The Vice President aids in strategic decision-making and manages internal workflows to optimize union efficiency.')">About Office</button>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Secretary -->
                 <div class="committee-card">
                     <div class="card-top">
                         <div class="position">Secretary</div>
                         <div class="name">Zidan</div>
-                        <p>Manages union records, correspondence, and meeting minutes.</p>
+                        <p>Manages official records, correspondence, and documentation of proceedings.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zidan', 'Secretary', 'Manages union records, correspondence, and meeting minutes.', 'profiles/Zidan.png')">Profile</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Secretary Office', 'Administration', 'The Secretary manages union records, correspondence, and meeting minutes.')">About</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zidan', 'Secretary', 'Oversees all administrative records and official communications.', 'profiles/Zidan.png')">View Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Office of the Secretary', 'Administration & Records', 'The Secretary is responsible for accurate record-keeping, managing correspondence, and ensuring compliance with procedural norms.')">About Office</button>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Joint Secretary -->
                 <div class="committee-card">
                     <div class="card-top">
                         <div class="position">Joint Secretary</div>
                         <div class="name">Muhyudheen</div>
-                        <p>Assists the secretary and handles specific administrative tasks.</p>
+                        <p>Provides administrative support to the Secretary and manages specific portfolios.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhyudheen', 'Joint Secretary', 'Assists the secretary and handles specific administrative tasks.', 'profiles/Muhyudheen.png')">Profile</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Joint Secretary Office', 'Administration', 'The Joint Secretary assists the secretary and handles specific administrative tasks.')">About</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhyudheen', 'Joint Secretary', 'Handles designated administrative functions and assists in secretarial duties.', 'profiles/Muhyudheen.png')">View Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Office of the Joint Secretary', 'Administrative Support', 'This office assists with high-volume administrative tasks, event logistics, and membership database management.')">About Office</button>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Treasurer -->
                 <div class="committee-card">
                     <div class="card-top">
                         <div class="position">Treasurer</div>
                         <div class="name">Mirsad</div>
-                        <p>Manages union finances, budgets, and financial reporting.</p>
+                        <p>Manages all financial assets, budgets, and reporting for the union.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Mirsad', 'Treasurer', 'Manages union finances, budgets, and financial reporting.', 'profiles/Mirsad.png')">Profile</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Treasurer Office', 'Finance', 'The Treasurer manages union finances, budgets, and financial reporting.')">About</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Mirsad', 'Treasurer', 'Responsible for financial stewardship, budgeting, and fiscal reporting.', 'profiles/Mirsad.png')">View Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Treasury Office', 'Financial Management', 'The Treasurer ensures fiscal discipline, maintains accurate accounts, and prepares financial statements for review.')">About Office</button>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Financial Manager -->
                 <div class="committee-card">
                     <div class="card-top">
                         <div class="position">Financial Manager</div>
                         <div class="name">Thanzeeh</div>
-                        <p>Oversees financial operations and ensures fiscal responsibility.</p>
+                        <p>Oversees financial operations and ensures compliance with internal policies.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Thanzeeh', 'Financial Manager', 'Oversees financial operations and ensures fiscal responsibility.', 'profiles/Thanzeeh.png')">Profile</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Financial Management', 'Finance', 'The Financial Manager oversees financial operations and ensures fiscal responsibility.')">About</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Thanzeeh', 'Financial Manager', 'Manages day-to-day financial operations and internal controls.', 'profiles/Thanzeeh.png')">View Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Financial Management', 'Operations & Compliance', 'The Financial Manager oversees transactions, manages cash flow, and ensures all financial activities adhere to union policies.')">About Office</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- P.R.O Card -->
+                <!-- P.R.O -->
                 <div class="committee-card">
                     <div class="card-top">
                         <div class="position">P.R.O</div>
                         <div class="name">Shahzad</div>
-                        <p>Public Relations Officer - Manages external communications and media relations.</p>
+                        <p>Manages external communications, media relations, and public engagement.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shahzad', 'P.R.O', 'Public Relations Officer - Manages external communications and media relations.', 'profiles/Shahzad.png')">Profile</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('P.R.O Office', 'Public Relations', 'The Public Relations Officer manages external communications and media relations for the union.')">About</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shahzad', 'Public Relations Officer', 'Cultivates the union\'s public image and manages all external communications.', 'profiles/Shahzad.png')">View Profile</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Public Relations Office', 'Communications & Outreach', 'The P.R.O. acts as the union\'s spokesperson, managing media relations and public outreach campaigns.')">About Office</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Auditing Board Card -->
-<div class="committee-card auditing-board-pro">
-    
-    <div class="audit-header">
-        <i class="fas fa-shield-alt"></i>
-        <span>Auditing Board</span>
-    </div>
+                <!-- Auditing Board -->
+                <div class="committee-card auditing-board-pro">
+                    <div class="audit-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Auditing Board</span>
+                    </div>
 
-    <div class="audit-members">
-        <div class="audit-person">
-            <div class="role">Chairman</div>
-            <div class="name">Adnan</div>
-        </div>
+                    <div class="audit-members">
+                        <div class="audit-person">
+                            <div class="role">Chairman</div>
+                            <div class="name">Adnan</div>
+                        </div>
 
-        <div class="audit-divider"></div>
+                        <div class="audit-divider"></div>
 
-<div class="audit-person convener">
-    <div class="role">Convener</div>
-    <div class="name">Rashad</div>
-</div>
+                        <div class="audit-person convener">
+                            <div class="role">Convener</div>
+                            <div class="name">Rashad</div>
+                        </div>
+                    </div>
 
-    </div>
+                    <p class="audit-desc">
+                        Ensures financial integrity and transparency through independent audits and rigorous governance oversight.
+                    </p>
 
-    <p class="audit-desc">
-        Ensures financial integrity, conducts audits, and maintains transparency
-        across all union financial operations.
-    </p>
-
-    <!-- HOVER ACTIONS -->
-    <div class="audit-hover-actions">
-        <button class="btn btn-compact"
-            onclick="showProfile('Adnan','Auditing Board Chair','Oversees financial audits and governance.','profiles/Adnan.png')">
-            Chair Profile
-        </button>
-
-        <button class="btn btn-compact convener-filled"
-            onclick="showProfile('Rashad','Auditing Board Convener','Supports audits and compliance.','profiles/Rashad.png')">
-            Convener Profile
-        </button>
-    </div>
-
-</div>
-
-
+                    <div class="audit-hover-actions">
+                        <button class="btn btn-compact" onclick="showProfile('Adnan','Auditing Board Chair','Oversees financial audits and governance compliance.','profiles/Adnan.png')">
+                            Chair Profile
+                        </button>
+                        <button class="btn btn-compact convener-filled" onclick="showProfile('Rashad','Auditing Board Convener','Supports audit procedures and compliance documentation.','profiles/Rashad.png')">
+                            Convener Profile
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>        
     </section>
+
     <!-- Subwings Section -->
     <section class="committee-section" id="subwings">
         <div class="container">
             <div class="committee-header" id="subwingsHeader">
-                <h2><i class="fas fa-sitemap"></i> Union Sub Wings</h2>
+                <h2><i class="fas fa-sitemap"></i> Specialized Sub-Wings</h2>
                 <div class="toggle-icon">
                     <i class="fas fa-chevron-down"></i>
                 </div>
@@ -1502,13 +1437,13 @@
                         <div class="position">Urdu Wing</div>
                         <div class="name">Chairman: Muhammed V.K</div>
                         <div class="name">Convener: Hisham</div>
-                        <p>Focuses on promoting Urdu language and literature among members through workshops and cultural events.</p>
+                        <p>Promotes Urdu literature and cultural heritage through workshops and events.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed V.K', 'Urdu Wing Chairman', 'Responsible for leading the Urdu Wing activities and initiatives.', 'profiles/Muhammed V.K.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Hisham', 'Urdu Wing Convener', 'Assists the chairman and coordinates daily activities of the Urdu Wing.', 'profiles/Hisham.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Urdu Wing', 'Language Department', 'The Urdu Wing focuses on promoting Urdu language and literature among members.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed V.K', 'Urdu Wing Chairman', 'Leads initiatives to promote Urdu language and culture.', 'profiles/Muhammed V.K.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Hisham', 'Urdu Wing Convener', 'Coordinates logistics and event planning for the Urdu Wing.', 'profiles/Hisham.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Urdu Wing', 'Language & Culture', 'Dedicated to the promotion and preservation of Urdu language and its rich literary tradition.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1519,13 +1454,13 @@
                         <div class="position">English Wing</div>
                         <div class="name">Chairman: Mujeeb</div>
                         <div class="name">Convener: Zameen</div>
-                        <p>Enhances English language skills through workshops, speaking sessions, and communication activities.</p>
+                        <p>Enhances professional communication skills through English language development.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Mujeeb', 'English Wing Chairman', 'Leads the English Wing focusing on language proficiency and communication skills.', 'profiles/Mujeeb.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Mujeeb', 'English Wing Chairman', 'Oversees programs for English proficiency and communication skills.', 'profiles/Mujeeb.png')">Chairman</button>
                             <button class="btn btn-primary profile-btn" onclick="showProfile('Zameen', 'English Wing Convener', 'Coordinates English language workshops and speaking sessions.', 'profiles/Zameen.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('English Wing', 'Language Department', 'The English Wing enhances English language skills through workshops and activities.')">About Wing</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('English Wing', 'Language & Communication', 'Focuses on improving English language skills for academic and professional advancement.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1536,13 +1471,13 @@
                         <div class="position">Arabic Wing</div>
                         <div class="name">Chairman: Naseem</div>
                         <div class="name">Convener: Razeen</div>
-                        <p>Promotes Arabic language and Islamic studies through classes, cultural events, and study groups.</p>
+                        <p>Facilitates the study of Arabic language and appreciation of Islamic heritage.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Naseem', 'Arabic Wing Chairman', 'Oversees Arabic language programs and cultural activities.', 'profiles/Naseem.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Razeen', 'Arabic Wing Convener', 'Assists in organizing Arabic language classes and cultural events.', 'profiles/Razeen.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Arabic Wing', 'Language Department', 'The Arabic Wing promotes Arabic language and Islamic studies.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Naseem', 'Arabic Wing Chairman', 'Leads Arabic language and cultural studies programs.', 'profiles/Naseem.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Razeen', 'Arabic Wing Convener', 'Organizes classes and cultural events for the Arabic Wing.', 'profiles/Razeen.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Arabic Wing', 'Language & Cultural Studies', 'Promotes the learning of Arabic and understanding of Islamic culture and history.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1553,13 +1488,13 @@
                         <div class="position">Malayalam Wing</div>
                         <div class="name">Chairman: Rabeeh</div>
                         <div class="name">Convener: Muzzammil</div>
-                        <p>Focuses on regional language and culture through language programs and cultural exchange.</p>
+                        <p>Champions regional linguistic heritage and cultural exchange programs.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Rabeeh', 'Malayalam Wing Chairman', 'Coordinates Malayalam language and cultural activities.', 'profiles/Rabeeh.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muzzammil', 'Malayalam Wing Convener', 'Assists in organizing Malayalam language programs and events.', 'profiles/Muzzammil.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Malayalam Wing', 'Language Department', 'The Malayalam Wing focuses on regional language and culture.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Rabeeh', 'Malayalam Wing Chairman', 'Leads regional language and cultural activities.', 'profiles/Rabeeh.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muzzammil', 'Malayalam Wing Convener', 'Assists in organizing language and cultural events.', 'profiles/Muzzammil.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Malayalam Wing', 'Regional Language & Culture', 'Promotes Malayalam language, literature, and cultural identity among members.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1569,12 +1504,12 @@
                     <div class="card-top">
                         <div class="position">Song & Recitation</div>
                         <div class="name">Chairman: Ridhan</div>
-                        <p>Organizes musical events, nasheed competitions, and recitation programs for cultural enrichment.</p>
+                        <p>Nurtures artistic talent through musical and recitation events.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Ridhan', 'Song & Recitation Chairman', 'Leads musical and recitation activities for the union.', 'profiles/Ridhan.png')">Chairman</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Song & Recitation Wing', 'Arts Department', 'This wing organizes musical events, nasheed competitions, and recitation programs.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Ridhan', 'Song & Recitation Chairman', 'Directs musical programs and recitation competitions.', 'profiles/Ridhan.png')">Chairman</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Song & Recitation Wing', 'Performing Arts', 'Organizes nasheed events, musical gatherings, and recitation programs for cultural enrichment.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1585,13 +1520,13 @@
                         <div class="position">Maths Wing</div>
                         <div class="name">Chairman: Muhammed U</div>
                         <div class="name">Convener: Muhammed PP</div>
-                        <p>Organizes math competitions, workshops, problem-solving sessions, and study groups.</p>
+                        <p>Fosters analytical thinking through competitions and problem-solving workshops.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed U', 'Maths Wing Chairman', 'Oversees mathematics-related activities and competitions.', 'profiles/muhammed U.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed PP', 'Maths Wing Convener', 'Coordinates math workshops, problem-solving sessions, and competitions.', 'profiles/Muhammed P.P.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Maths Wing', 'Academic Department', 'The Maths Wing organizes math competitions, workshops, and study sessions.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed U', 'Maths Wing Chairman', 'Leads mathematics enrichment activities and competitions.', 'profiles/muhammed U.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed PP', 'Maths Wing Convener', 'Coordinates workshops and study groups.', 'profiles/Muhammed P.P.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Maths Wing', 'Academic Development', 'Organizes math olympiads, logic workshops, and peer-to-peer tutoring sessions.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1602,13 +1537,13 @@
                         <div class="position">Art Wing</div>
                         <div class="name">Chairman: Ranif</div>
                         <div class="name">Convener: Rashad</div>
-                        <p>Promotes creativity through drawing, painting, design workshops, and art exhibitions.</p>
+                        <p>Cultivates creativity through visual arts, design, and exhibitions.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Ranif', 'Art Wing Chairman', 'Leads artistic and creative activities for the union.', 'profiles/Ranif.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Rashad', 'Art Wing Convener', 'Assists in organizing art workshops, exhibitions, and creative sessions.', 'profiles/Rashad.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Art Wing', 'Arts Department', 'The Art Wing promotes creativity through drawing, painting, and design workshops.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Ranif', 'Art Wing Chairman', 'Leads creative and artistic development initiatives.', 'profiles/Ranif.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Rashad', 'Art Wing Convener', 'Assists in organizing art workshops and exhibitions.', 'profiles/Rashad.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Art Wing', 'Creative Arts', 'Promotes visual arts, design thinking, and creative expression through various mediums.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1619,13 +1554,13 @@
                         <div class="position">Library Wing</div>
                         <div class="name">Chairman: Razin</div>
                         <div class="name">Convener: Adnan</div>
-                        <p>Organizes book clubs, reading sessions, and manages the union library resources.</p>
+                        <p>Manages knowledge resources and promotes a culture of reading.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Razin', 'Library Wing Chairman', 'Manages library resources and reading programs.', 'profiles/Razin.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Adnan', 'Library Wing Convener', 'Assists in managing library operations and organizing reading sessions.', 'profiles/Adnan.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Library Wing', 'Academic Department', 'The Library Wing organizes book clubs, reading sessions, and manages union library.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Razin', 'Library Wing Chairman', 'Oversees library operations and reading programs.', 'profiles/Razin.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Adnan', 'Library Wing Convener', 'Assists with library management and event coordination.', 'profiles/Adnan.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Library Wing', 'Knowledge Management', 'Curates the union library collection and organizes book clubs and literary discussions.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1636,13 +1571,13 @@
                         <div class="position">Geography Wing</div>
                         <div class="name">Chairman: Zayin</div>
                         <div class="name">Convener: Salah</div>
-                        <p>Focuses on geographical knowledge, environmental awareness, and exploration activities.</p>
+                        <p>Raises awareness of global environments and geographical studies.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zayin', 'Geography Wing Chairman', 'Leads geographical studies and exploration activities.', 'profiles/Zayin.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Salah', 'Geography Wing Convener', 'Coordinates geography workshops, field trips, and map studies.', 'profiles/Salah.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Geography Wing', 'Academic Department', 'The Geography Wing focuses on geographical knowledge and environmental awareness.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zayin', 'Geography Wing Chairman', 'Leads geographical exploration and environmental awareness programs.', 'profiles/Zayin.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Salah', 'Geography Wing Convener', 'Coordinates field trips and map study workshops.', 'profiles/Salah.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Geography Wing', 'Environmental & Spatial Studies', 'Focuses on geographical knowledge, cartography, and environmental stewardship.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1653,13 +1588,13 @@
                         <div class="position">G.K Wing</div>
                         <div class="name">Chairman: Fuad M.A</div>
                         <div class="name">Convener: Aslah</div>
-                        <p>Organizes quizzes, debates, and current affairs discussions to enhance general knowledge.</p>
+                        <p>Enhances general awareness through quizzes, debates, and current affairs analysis.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fuad M.A', 'G.K Wing Chairman', 'Oversees general knowledge activities and quiz competitions.', 'profiles/Fuad M.A.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Aslah', 'G.K Wing Convener', 'Organizes quiz competitions, debates, and current affairs discussions.', 'profiles/Aslah.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('G.K Wing', 'Academic Department', 'The G.K Wing organizes quizzes, debates, and current affairs discussions.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fuad M.A', 'G.K Wing Chairman', 'Oversees general knowledge and current affairs initiatives.', 'profiles/Fuad M.A.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Aslah', 'G.K Wing Convener', 'Organizes quiz competitions and debate forums.', 'profiles/Aslah.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('G.K Wing', 'Academic & Current Affairs', 'Develops critical thinking and awareness of national and international events.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1670,13 +1605,13 @@
                         <div class="position">Science Wing</div>
                         <div class="name">Chairman: Shabeel</div>
                         <div class="name">Convener: Muhaimin</div>
-                        <p>Organizes science fairs, experiments, tech workshops, and scientific demonstrations.</p>
+                        <p>Ignites curiosity through experiments, science fairs, and tech demonstrations.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shabeel', 'Science Wing Chairman', 'Leads scientific activities and experiments for the union.', 'profiles/Shabeel.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhaimin', 'Science Wing Convener', 'Coordinates science experiments, demonstrations, and workshops.', 'profiles/Muhaimin.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Science Wing', 'Academic Department', 'The Science Wing organizes science fairs, experiments, and tech workshops.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shabeel', 'Science Wing Chairman', 'Leads scientific inquiry and experimentation projects.', 'profiles/Shabeel.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhaimin', 'Science Wing Convener', 'Coordinates science fairs and interactive workshops.', 'profiles/Muhaimin.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Science Wing', 'STEM Engagement', 'Organizes hands-on science activities, technology workshops, and innovation challenges.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1687,13 +1622,13 @@
                         <div class="position">Publication Wing</div>
                         <div class="name">Chairman: Fidyan</div>
                         <div class="name">Convener: Zarhan</div>
-                        <p>Manages union publications, newsletters, and digital content creation.</p>
+                        <p>Manages the creation and distribution of union newsletters and digital content.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fidyan', 'Publication Wing Chairman', 'Coordinates publication activities and content creation.', 'profiles/Fidyan.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zarhan', 'Publication Wing Convener', 'Organizes publication events and manages content distribution.', 'profiles/Zarhan.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Publication Wing', 'Media Department', 'The Publication Wing manages union publications, newsletters, and digital content.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fidyan', 'Publication Wing Chairman', 'Oversees content creation and editorial standards.', 'profiles/Fidyan.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Zarhan', 'Publication Wing Convener', 'Manages production schedules and content distribution.', 'profiles/Zarhan.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Publication Wing', 'Media & Editorial', 'Responsible for publishing union magazines, newsletters, and digital media.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1704,13 +1639,13 @@
                         <div class="position">Media Wing</div>
                         <div class="name">Chairman: Muhammed S.M</div>
                         <div class="name">Convener: Shahzad</div>
-                        <p>Handles photography, video production, social media management, and communications.</p>
+                        <p>Captures and shares the union's story through photography and videography.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed S.M', 'Media Wing Chairman', 'Oversees media production and communications for the union.', 'profiles/Muhammed S.M.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shahzad', 'Media Wing Convener', 'Manages photography, video editing, and social media content.', 'profiles/Shahzad.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Media Wing', 'Communications Department', 'The Media Wing handles photography, video production, and social media management.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Muhammed S.M', 'Media Wing Chairman', 'Directs media production and social media strategy.', 'profiles/Muhammed S.M.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Shahzad', 'Media Wing Convener', 'Manages photography, video editing, and content scheduling.', 'profiles/Shahzad.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Media Wing', 'Visual Communications', 'Handles event coverage, video production, and management of official social media channels.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1721,13 +1656,13 @@
                         <div class="position">Medical Wing</div>
                         <div class="name">Chairman: Nuhman</div>
                         <div class="name">Convener: Abdu Rahman</div>
-                        <p>Organizes health camps, first aid training, and medical awareness sessions.</p>
+                        <p>Promotes health awareness and organizes medical camps for the community.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Nuhman', 'Medical Wing Chairman', 'Leads health awareness and medical assistance programs.', 'profiles/Nuhman.png')">Chairman</button>
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Abdu Rahman', 'Medical Wing Convener', 'Organizes health camps and first aid training sessions.', 'profiles/abdu-rahman.png')">Convener</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Medical Wing', 'Health Department', 'The Medical Wing organizes health camps, first aid training, and medical awareness sessions.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Nuhman', 'Medical Wing Chairman', 'Leads health awareness campaigns and medical support initiatives.', 'profiles/Nuhman.png')">Chairman</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Abdu Rahman', 'Medical Wing Convener', 'Coordinates health camps and first aid training sessions.', 'profiles/abdu-rahman.png')">Convener</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Medical Wing', 'Health & Wellness', 'Organizes health check-ups, first aid training, and public health awareness drives.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1737,12 +1672,12 @@
                     <div class="card-top">
                         <div class="position">Sports Wing</div>
                         <div class="name">Chairman: Fuad Habeeb</div>
-                        <p>Organizes tournaments, fitness programs, and recreational activities for physical development.</p>
+                        <p>Encourages physical fitness and teamwork through tournaments and sports events.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="card-buttons">
-                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fuad Habeeb', 'Sports Wing Chairman', 'Coordinates all sports activities and tournaments for the union.', 'profiles/Habeeb.png')">Chairman</button>
-                            <button class="btn btn-outline about-btn" onclick="showAbout('Sports Wing', 'Physical Education Department', 'The Sports Wing organizes tournaments, fitness programs, and recreational activities.')">About Wing</button>
+                            <button class="btn btn-primary profile-btn" onclick="showProfile('Fuad Habeeb', 'Sports Wing Chairman', 'Coordinates all athletic activities and tournaments.', 'profiles/Habeeb.png')">Chairman</button>
+                            <button class="btn btn-outline about-btn" onclick="showAbout('Sports Wing', 'Athletics & Recreation', 'Organizes competitive and recreational sports events to promote physical well-being and camaraderie.')">About Wing</button>
                         </div>
                     </div>
                 </div>
@@ -1765,7 +1700,7 @@
                                 <span class="leader-name">Muhammed PP</span>
                             </div>
                         </div>
-                        <p class="wing-description">Focuses on teaching and promoting foreign languages like German and French among members.</p>
+                        <p class="wing-description">Provides instruction and cultural exchange opportunities in German and French.</p>
                     </div>
                     <div class="card-bottom">
                         <div class="multi-buttons">
@@ -1775,10 +1710,10 @@
                             <button class="btn btn-compact" onclick="showProfile('Muhyudheen', 'French Chairman', 'Oversees French language learning and francophone culture programs.', 'profiles/Muhyudheen.png')">
                                 <i class="fas fa-user"></i> French (C)
                             </button>
-                            <button class="btn btn-compact" onclick="showProfile('Muhammed PP', 'French Convener', 'Assists the French Chairman in organizing language classes and events.', 'profiles/Muhammed P.P.png')">
+                            <button class="btn btn-compact" onclick="showProfile('Muhammed PP', 'French Convener', 'Assists in organizing French language classes and cultural events.', 'profiles/Muhammed P.P.png')">
                                 <i class="fas fa-user"></i> French (Conv)
                             </button>
-                            <button class="btn btn-outline btn-compact" onclick="showAbout('Foreign Language Wing', 'Language Department', 'This wing focuses on teaching and promoting foreign languages like German and French among members.')">
+                            <button class="btn btn-outline btn-compact" onclick="showAbout('Foreign Language Wing', 'Multilingual Development', 'Focuses on building multilingual proficiency in German and French for global opportunities.')">
                                 <i class="fas fa-info-circle"></i> About
                             </button>
                         </div>
@@ -1816,11 +1751,11 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Contact Us</h3>
+                    <h3>Contact Information</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Kannadipparamba dhic</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kannadipparamba D.H.I.C, Kerala</li>
                         <li><i class="fas fa-phone"></i> (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> itqanfriend786@gamil.com</li>
+                        <li><i class="fas fa-envelope"></i> contact@itqanunion.org</li>
                         <li><i class="fas fa-clock"></i> Mon-Fri: 9am-5pm, Sat: 10am-2pm</li>
                     </ul>
                 </div>
@@ -1832,7 +1767,7 @@
         </div>
     </footer>
 
-    <!-- Enhanced Profile Modal with Photos -->
+    <!-- Profile Modal -->
     <div class="profile-modal" id="profileModal">
         <div class="modal-content">
             <button class="modal-close" id="modalClose">&times;</button>
@@ -1854,13 +1789,9 @@
             <div class="modal-body">
                 <p id="modalDescription">Description will appear here.</p>
                 
-                <div class="details-section" id="modalDetails">
-                    <!-- Dynamic content will go here -->
-                </div>
+                <div class="details-section" id="modalDetails"></div>
                 
-                <div class="contact-info" id="modalContactInfo">
-                    <!-- Contact info will appear here -->
-                </div>
+                <div class="contact-info" id="modalContactInfo"></div>
             </div>
             
             <div class="modal-footer">
@@ -1922,128 +1853,56 @@
         const modalEmailBtn = document.getElementById('modalEmailBtn');
         const modalCallBtn = document.getElementById('modalCallBtn');
         
-        // Profile Data with Photos
+        // Profile Data
         const profileData = {
             'Sayed Hudaif': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Setting union strategic direction',
-                    'Representing members in high-level decisions',
-                    'Overseeing all union activities',
-                    'Chairing executive meetings'
-                ],
-                contact: {
-                    email: 'president@itqanunion.org',
-                    phone: '+91 98765 43210'
-                }
+                responsibilities: ['Setting union strategic direction', 'Representing members in high-level decisions', 'Overseeing all union activities', 'Chairing executive meetings'],
+                contact: { email: 'president@itqanunion.org', phone: '+91 98765 43210' }
             },
             'Sayed Burhan': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Supporting the president in strategic decisions',
-                    'Overseeing daily union operations',
-                    'Coordinating between different wings',
-                    'Standing in for president when needed'
-                ],
-                contact: {
-                    email: 'vicepresident@itqanunion.org',
-                    phone: '+91 98765 43211'
-                }
+                responsibilities: ['Supporting the president in strategic decisions', 'Overseeing daily union operations', 'Coordinating between different wings', 'Standing in for president when needed'],
+                contact: { email: 'vicepresident@itqanunion.org', phone: '+91 98765 43211' }
             },
             'Zidan': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Maintaining union records and documentation',
-                    'Managing official correspondence',
-                    'Recording and distributing meeting minutes',
-                    'Coordinating communication flow'
-                ],
-                contact: {
-                    email: 'secretary@itqanunion.org',
-                    phone: '+91 98765 43212'
-                }
+                responsibilities: ['Maintaining union records and documentation', 'Managing official correspondence', 'Recording and distributing meeting minutes', 'Coordinating communication flow'],
+                contact: { email: 'secretary@itqanunion.org', phone: '+91 98765 43212' }
             },
             'Muhyudheen': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Assisting the secretary in daily tasks',
-                    'Handling specific administrative assignments',
-                    'Maintaining membership records',
-                    'Coordinating event logistics'
-                ],
-                contact: {
-                    email: 'jointsecretary@itqanunion.org',
-                    phone: '+91 98765 43213'
-                }
+                responsibilities: ['Assisting the secretary in daily tasks', 'Handling specific administrative assignments', 'Maintaining membership records', 'Coordinating event logistics'],
+                contact: { email: 'jointsecretary@itqanunion.org', phone: '+91 98765 43213' }
             },
             'Mirsad': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Managing union finances and budget',
-                    'Preparing financial reports',
-                    'Handling accounts and transactions',
-                    'Ensuring financial compliance'
-                ],
-                contact: {
-                    email: 'treasurer@itqanunion.org',
-                    phone: '+91 98765 43214'
-                }
+                responsibilities: ['Managing union finances and budget', 'Preparing financial reports', 'Handling accounts and transactions', 'Ensuring financial compliance'],
+                contact: { email: 'treasurer@itqanunion.org', phone: '+91 98765 43214' }
             },
             'Thanzeeh': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Overseeing all financial operations',
-                    'Ensuring fiscal responsibility',
-                    'Financial planning and analysis',
-                    'Audit preparation and compliance'
-                ],
-                contact: {
-                    email: 'finance@itqanunion.org',
-                    phone: '+91 98765 43215'
-                }
+                responsibilities: ['Overseeing all financial operations', 'Ensuring fiscal responsibility', 'Financial planning and analysis', 'Audit preparation and compliance'],
+                contact: { email: 'finance@itqanunion.org', phone: '+91 98765 43215' }
             },
             'Shahzad': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Managing external communications',
-                    'Handling media relations and press releases',
-                    'Coordinating public events and campaigns',
-                    'Building community relationships'
-                ],
-                contact: {
-                    email: 'pro@itqanunion.org',
-                    phone: '+91 98765 43216'
-                }
+                responsibilities: ['Managing external communications', 'Handling media relations and press releases', 'Coordinating public events and campaigns', 'Building community relationships'],
+                contact: { email: 'pro@itqanunion.org', phone: '+91 98765 43216' }
             },
             'Adnan': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Chairing the Auditing Board',
-                    'Overseeing financial audits and reviews',
-                    'Ensuring financial transparency',
-                    'Monitoring compliance with financial policies'
-                ],
-                contact: {
-                    email: 'audit.chair@itqanunion.org',
-                    phone: '+91 98765 43217'
-                }
+                responsibilities: ['Chairing the Auditing Board', 'Overseeing financial audits and reviews', 'Ensuring financial transparency', 'Monitoring compliance with financial policies'],
+                contact: { email: 'audit.chair@itqanunion.org', phone: '+91 98765 43217' }
             },
             'Rashad': {
                 wing: 'Core Committee',
-                responsibilities: [
-                    'Assisting the Audit Board Chair',
-                    'Coordinating audit procedures',
-                    'Documenting audit findings',
-                    'Preparing audit reports'
-                ],
-                contact: {
-                    email: 'audit.convener@itqanunion.org',
-                    phone: '+91 98765 43218'
-                }
+                responsibilities: ['Assisting the Audit Board Chair', 'Coordinating audit procedures', 'Documenting audit findings', 'Preparing audit reports'],
+                contact: { email: 'audit.convener@itqanunion.org', phone: '+91 98765 43218' }
             }
         };
         
-        // Enhanced showProfile function with photo support
+        // Show Profile function
         function showProfile(name, position, description, photoUrl = '') {
             const profile = profileData[name] || {};
             
@@ -2051,25 +1910,19 @@
             modalSubtitle.textContent = position;
             modalDescription.textContent = description;
             
-            // Set photo
             if (photoUrl && photoUrl.trim() !== '') {
                 modalPhoto.src = photoUrl;
                 modalPhoto.style.display = 'block';
                 photoPlaceholder.style.display = 'none';
-                
-                // Set initials in placeholder as fallback
                 const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
                 photoPlaceholder.textContent = initials;
             } else {
                 modalPhoto.style.display = 'none';
                 photoPlaceholder.style.display = 'flex';
-                
-                // Generate initials for placeholder
                 const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
                 photoPlaceholder.innerHTML = `<span>${initials}</span>`;
             }
             
-            // Set wing badge
             if (profile.wing) {
                 modalBadges.innerHTML = `<span class="wing-badge">${profile.wing}</span>`;
             } else if (position.includes('Wing')) {
@@ -2078,76 +1931,35 @@
                 modalBadges.innerHTML = '';
             }
             
-            // Set responsibilities
             if (profile.responsibilities && profile.responsibilities.length > 0) {
                 const responsibilitiesHTML = `
-                    <h4><i class="fas fa-tasks"></i> Responsibilities</h4>
-                    <ul>
-                        ${profile.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
-                    </ul>
+                    <h4><i class="fas fa-tasks"></i> Key Responsibilities</h4>
+                    <ul>${profile.responsibilities.map(resp => `<li>${resp}</li>`).join('')}</ul>
                 `;
                 modalDetails.innerHTML = responsibilitiesHTML;
             } else {
-                // Default responsibilities for leadership positions
-                if (position.includes('Chairman') || position.includes('Convener') || position.includes('President') || position.includes('Secretary') || position.includes('Treasurer')) {
-                    modalDetails.innerHTML = `
-                        <h4><i class="fas fa-tasks"></i> Responsibilities</h4>
-                        <ul>
-                            <li>Leading activities and meetings</li>
-                            <li>Coordinating with other members</li>
-                            <li>Reporting to higher authorities</li>
-                            <li>Organizing events and programs</li>
-                        </ul>
-                    `;
-                } else {
-                    modalDetails.innerHTML = '';
-                }
+                modalDetails.innerHTML = '';
             }
             
-            // Set contact info
             if (profile.contact) {
                 const contactHTML = `
                     <h4><i class="fas fa-address-card"></i> Contact Information</h4>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>${profile.contact.email}</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>${profile.contact.phone}</span>
-                    </div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i><span>${profile.contact.email}</span></div>
+                    <div class="contact-item"><i class="fas fa-phone"></i><span>${profile.contact.phone}</span></div>
                 `;
                 modalContactInfo.innerHTML = contactHTML;
-                
-                // Update contact buttons
-                modalEmailBtn.onclick = () => {
-                    window.location.href = `mailto:${profile.contact.email}`;
-                };
-                modalCallBtn.onclick = () => {
-                    window.location.href = `tel:${profile.contact.phone}`;
-                };
+                modalEmailBtn.onclick = () => { window.location.href = `mailto:${profile.contact.email}`; };
+                modalCallBtn.onclick = () => { window.location.href = `tel:${profile.contact.phone}`; };
                 modalEmailBtn.style.display = 'inline-block';
                 modalCallBtn.style.display = 'inline-block';
             } else {
-                // Default contact info
                 modalContactInfo.innerHTML = `
                     <h4><i class="fas fa-info-circle"></i> Contact Information</h4>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>${name.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org</span>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>Contact via union office</span>
-                    </div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i><span>${name.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org</span></div>
+                    <div class="contact-item"><i class="fas fa-phone"></i><span>Contact via union office</span></div>
                 `;
-                
-                modalEmailBtn.onclick = () => {
-                    window.location.href = `mailto:${name.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org`;
-                };
-                modalCallBtn.onclick = () => {
-                    alert(`Please contact the ITQAN Union office for ${name}'s contact details.`);
-                };
+                modalEmailBtn.onclick = () => { window.location.href = `mailto:${name.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org`; };
+                modalCallBtn.onclick = () => { alert(`Please contact the ITQAN Union office for ${name}'s contact details.`); };
                 modalEmailBtn.style.display = 'inline-block';
                 modalCallBtn.style.display = 'inline-block';
             }
@@ -2156,13 +1968,12 @@
             document.body.style.overflow = 'hidden';
         }
         
-        // Enhanced showAbout function for wings
+        // Show About function
         function showAbout(wingName, department, description) {
             modalTitle.textContent = wingName;
             modalSubtitle.textContent = department;
             modalDescription.textContent = description;
             
-            // Set wing photo
             const wingPhoto = `wings/${wingName.toLowerCase().replace(/\s+/g, '-')}.jpg`;
             modalPhoto.src = wingPhoto;
             modalPhoto.onerror = function() {
@@ -2173,10 +1984,8 @@
             modalPhoto.style.display = 'block';
             photoPlaceholder.style.display = 'none';
             
-            // Set wing badge
             modalBadges.innerHTML = `<span class="wing-badge">${wingName}</span>`;
             
-            // Set wing activities
             modalDetails.innerHTML = `
                 <h4><i class="fas fa-calendar-check"></i> Key Activities</h4>
                 <ul>
@@ -2188,30 +1997,15 @@
                 </ul>
             `;
             
-            // Set wing contact info
             modalContactInfo.innerHTML = `
                 <h4><i class="fas fa-info-circle"></i> Wing Information</h4>
-                <div class="contact-item">
-                    <i class="fas fa-users"></i>
-                    <span>Multiple members and coordinators</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>${wingName.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Activities: Weekly meetings, monthly events</span>
-                </div>
+                <div class="contact-item"><i class="fas fa-users"></i><span>Multiple members and coordinators</span></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><span>${wingName.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org</span></div>
+                <div class="contact-item"><i class="fas fa-clock"></i><span>Activities: Weekly meetings, monthly events</span></div>
             `;
             
-            // Update contact buttons for wing
-            modalEmailBtn.onclick = () => {
-                window.location.href = `mailto:${wingName.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org`;
-            };
-            modalCallBtn.onclick = () => {
-                alert(`Please contact the ${wingName} Chairman for more information.`);
-            };
+            modalEmailBtn.onclick = () => { window.location.href = `mailto:${wingName.toLowerCase().replace(/\s+/g, '.')}@itqanunion.org`; };
+            modalCallBtn.onclick = () => { alert(`Please contact the ${wingName} Chairman for more information.`); };
             
             profileModal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -2226,39 +2020,29 @@
         modalClose.addEventListener('click', closeModal);
         modalCloseBtn.addEventListener('click', closeModal);
         
-        // Close modal when clicking outside
         profileModal.addEventListener('click', (e) => {
-            if (e.target === profileModal) {
-                closeModal();
-            }
+            if (e.target === profileModal) closeModal();
         });
         
-        // Smooth scrolling for anchor links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
-                    // Close mobile menu if open
                     navLinks.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: targetElement.offsetTop - 100, behavior: 'smooth' });
                 }
             });
         });
         
-        // Animation on scroll
+        // FIXED: Animation on scroll - adds 'visible' class to show buttons
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.3,
+            rootMargin: '0px 0px -20px 0px'
         };
         
         const observer = new IntersectionObserver((entries) => {
@@ -2266,6 +2050,8 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    // Add visible class to show buttons
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
@@ -2276,6 +2062,16 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+
+        // Also make sure any visible cards on load get the visible class
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.committee-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.classList.add('visible');
+                }
+            });
         });
     </script>
 </body>
